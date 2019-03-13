@@ -9,23 +9,23 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(urlPatterns={"/readcookie"})
-public class CookieReadServlet extends HttpServlet {
+@WebServlet(urlPatterns={"/delcookie"})
+public class CookieDeleteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setCharacterEncoding("UTF-8");
-        resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
-        out.println("<html><head><title>쿠키 읽기</title></head><body>");
+        out.println("<html><head><title>cookie 삭제</title></head>");
+        out.println("<body>");
         Cookie[] cookies = req.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("jpub")) {
-                    out.println("cookie::" + cookie.getValue());
+                    Cookie deletedCookie = new Cookie("jpub", "");
+                    deletedCookie.setMaxAge(0);
+                    resp.addCookie(deletedCookie);
                 }
             }
         }
-        out.println("<a href='/modicookie'>쿠키수정</a></body></html>");
-        out.println("</body></html>");
+        out.println("<a href='/readcookie'>readcookie</a></body></html>");
     }
 }
