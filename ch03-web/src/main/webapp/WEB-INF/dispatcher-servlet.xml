@@ -19,7 +19,7 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/"/>
-            <bean class="info.thecodinglive.interceptor.JpubInterceptor"/>
+            <bean class="info.thecodinglive.interceptor.ExecuteTimeInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 </beans>
