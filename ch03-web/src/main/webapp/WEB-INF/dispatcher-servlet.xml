@@ -16,4 +16,10 @@
         <property name="suffix" value=".jsp" />
     </bean>
 
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/"/>
+            <bean class="info.thecodinglive.interceptor.JpubInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>
